@@ -54,7 +54,7 @@ jobs:
         wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.tar.gz
         tar -xvzf trivy_0.18.3_Linux-64bit.tar.gz
         chmod 755 trivy
-        trivy image --severity CRITICAL "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0"
+        ./trivy image --severity CRITICAL "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0"
     
     - name: Create GKE Cluster
       run: gcloud container clusters create test-cluster1 --zone us-central1-a
