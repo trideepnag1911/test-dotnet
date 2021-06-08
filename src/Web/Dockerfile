@@ -10,8 +10,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 
-COPY ../../eShopOnWeb.sln .
-COPY ../../* .
+COPY eShopOnWeb.sln .
+COPY ./ .
 WORKDIR /app/src/Web
 RUN dotnet restore
 

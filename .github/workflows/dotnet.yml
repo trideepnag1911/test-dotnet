@@ -25,11 +25,10 @@ jobs:
     - name: Build with dotnet
       run: |
         dotnet build ./eShopOnWeb.sln --configuration Release
-        cd src/Web
         pwd
         ls -lrt
         ls -lrt ../../
-        docker build --tag "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0" .
+        docker build --tag "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0" -f src/Web/Dockerfile
     
     # Push the Docker image to Google Container Registry
     - name: Publish
