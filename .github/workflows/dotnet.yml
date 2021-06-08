@@ -21,7 +21,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-    
+    - name: check trivy
+      run: trivy -h
     # Setup gcloud CLI
     - uses: google-github-actions/setup-gcloud@v0.2.0
       with:
@@ -47,13 +48,6 @@ jobs:
       run: |-
         docker push "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0"
         
-    # Scanning the docker images for Vulnerability
-    - name: Image Scanning
-      run: |
-        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-        echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/trivy.list
-        apt-get install trivy -y
-        trivy image --severity CRITICAL "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0"
     
     - name: Create GKE Cluster
       run: gcloud container clusters create test-cluster1 --zone us-central1-a
