@@ -41,7 +41,8 @@ jobs:
         ls -lrt ../../
         docker build --tag "gcr.io/$PROJECT_ID/dotnet-core-with-actions:1.0" -f src/Web/Dockerfile .
         
-        
+    - name: Rust Code Coverage
+      uses: Swatinem/fucov@v1.0.0
     
     # Push the Docker image to Google Container Registry
     - name: Publish
